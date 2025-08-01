@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<title></title>
+	<meta name="generator" content="LibreOffice 24.8.5.1 (Windows)" />
+	<meta name="created" content="2025-07-15T02:49:37.331000000" />
+	<meta name="changed" content="2025-07-15T05:00:20.468000000" />
+	<style type="text/css">
+		@page {
+			margin: 2cm
+		}
+
+		td p {
+			line-height: 115%;
+			orphans: 0;
+			widows: 0;
+			margin-bottom: 0.25cm;
+			background: transparent
+		}
+
+		h1 {
+			margin-bottom: 0.21cm;
+			background: transparent
+		}
+
+		h1.western {
+			font-family: "Liberation Sans", sans-serif;
+			font-size: 18pt
+		}
+
+		h1.cjk {
+			font-family: "Noto Sans JP";
+			font-size: 18pt
+		}
+
+		h1.ctl {
+			font-family: "Arial";
+			font-size: 18pt
+		}
+
+		p {
+			line-height: 115%;
+			margin-bottom: 0.25cm;
+			background: transparent
+		}
+
+		h2 {
+			margin-top: 0.35cm;
+			margin-bottom: 0.21cm;
+			background: transparent
+		}
+
+		h2.western {
+			font-family: "Liberation Sans", sans-serif;
+			font-size: 16pt
+		}
+
+		h2.cjk {
+			font-family: "Noto Sans JP";
+			font-size: 16pt
+		}
+
+		h2.ctl {
+			font-family: "Arial";
+			font-size: 16pt
+		}
+
+		td.maked {
+			border: 1px solid #000000;
+		}
+	</style>
+</head>
+
+<body lang="ja-JP" dir="ltr">
+	<form name="フォーム" action="">
+		<h1 class="cjk">
+			<u>収支予測</u>
+		</h1>
+		<input type="button" id="buttonHow" value="使い方"></input>
+		<p>
+		<h2 class="cjk">
+			・保存データ
+		</h2>
+		<textarea id="textSaveData" rows="5" cols="29" wrap="soft"></textarea>
+		<table cellpadding="4" cellspacing="0">
+			<tr valign="top">
+				<td height="27" style="border: none; padding: 0cm">
+					<input type="button" id="buttonSave" value="SAVE"></input>
+				</td>
+				<td></td>
+				<td style="border: none; padding: 0cm">
+					<input type="button" id="buttonLoad" value="LOAD"></input>
+				</td>
+				<td></td>
+				<td style="border: none; padding: 0cm">
+					<input type="button" id="buttonInit" value="初期化"></input>
+				</td>
+			</tr>
+		</table>
+		</p>
+		<p>
+		<h2 class="cjk">
+			・基本
+		</h2>
+		<table>
+			<tr valign="top">
+				<td style="border: none; ">
+					予測期間:
+				</td>
+				<td style="border: none; ">
+					<input type="text" id="textAgeStart" value="" size="4"></input>
+				</td>
+				<td>
+					歳から
+				</td>
+				<td>
+					<input type="text" id="textAgeEnd" value="" size="4"></input>
+				</td>
+				<td>
+					歳
+				</td>
+			</tr>
+		</table>
+		<table>
+			<tr valign="top">
+				<td>
+					定年:
+				</td>
+				<td>
+					<input type="text" id="textWorkEnd" value="" size="4"></input>
+				</td>
+				<td>
+					歳
+				</td>
+			</tr>
+		</table>
+		<table>
+			<tr valign="top">
+				<td>
+					年金給付開始:
+				</td>
+				<td>
+					<input type="text" id="textPensionStart" value="" size="4"></input>
+				</td>
+				<td>
+					歳
+				</td>
+			</tr>
+		</table>
+		</p>
+		<p>
+		<h2 class="cjk">
+			・収入(単位:千円)
+		</h2>
+		<table>
+			<tbody>
+				<tr valign="top">
+					<th style="border: 1px solid #000000">
+						要素
+					</th>
+					<th style="border: 1px solid #000000">
+						換算月額
+					</th>
+					<th style="border: 1px solid #000000">
+						入力
+					</th>
+					<th style="border: 1px solid #000000">
+						依存
+					</th>
+				</tr>
+			</tbody>
+			<tbody id="moneyIn">
+			</tbody>
+		</table>
+		</p>
+		<p>
+		<h2 class="cjk">
+			・支出(単位:千円)
+		</h2>
+		<table>
+			<tbody>
+				<tr valign="top">
+					<th style="border: 1px solid #000000">
+						要素
+					</th>
+					<th style="border: 1px solid #000000">
+						換算月額
+					</th>
+					<th style="border: 1px solid #000000">
+						入力
+					</th>
+					<th style="border: 1px solid #000000">
+						依存
+					</th>
+				</tr>
+			</tbody>
+			<tbody id="moneyOut">
+			</tbody>
+		</table>
+		</p>
+		<p>
+			<input type="button" id="buttonPred" value="予測"></input>
+		</p>
+		<p>
+		<h2 class="cjk">
+			・予測(単位:千円)
+		</h2>
+		<table>
+			<tr valign="top">
+				<td style="border: none; ">
+					必要預金:
+				</td>
+				<td style="border: none; " id="textPredDeposit">
+				</td>
+			</tr>
+		</table>
+		<table>
+			<tr valign="top">
+				<td style="border: none; ">
+					詳細:
+				</td>
+			</tr>
+			<tr valign="top">
+				<td style="border: none; ">
+					<table>
+						<tbody>
+							<tr valign="top">
+								<th style="border: 1px solid #000000">
+									歳
+								</th>
+								<th style="border: 1px solid #000000">
+									月
+								</th>
+								<th style="border: 1px solid #000000">
+									収支
+								</th>
+								<th style="border: 1px solid #000000">
+									収支(累積)
+								</th>
+							</tr>
+						</tbody>
+						<tbody id="predDetail">
+						</tbody>
+					</table>
+				</td>
+			</tr>
+		</table>
+		</p>
+	</form>
+</body>
+<script src="./content.js"></script>
+
+</html>
